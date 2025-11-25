@@ -1,31 +1,43 @@
 
 import 'package:flutter/material.dart';
-import '../../common/widget/debouncer_button.dart';
-import '../../constants/app_colors.dart';
-import '../../constants/app_sizes.dart';
-import 'process_notifier.dart';
-import '../../services/debug/debug_service.dart';
+import '../../../../common/widget/debouncer_button.dart';
+import '../../../../constants/app_colors.dart';
+import '../../../../constants/app_sizes.dart';
+import '../process_notifier.dart';
+import '../../../../services/debug/debug_service.dart';
 
-class RSaveButton extends StatefulWidget {
+class RProcessButton extends StatefulWidget {
 
   final double? height;
   final double? width;
   final BorderRadius? borderRadius;
   final TextStyle? style;
   final ProcessStatusNotifier? buttonStatusNotifier;
-  final String saveText;
+  /// This text is displayed when the button is in either enabled or disabled state.
+  /// 
+  /// By default, it is set to "Save".
+  final String generalText;
+  /// This text is displayed when the button is in loading state.
+  /// 
+  /// By default, it is set to "Saving".
   final String loadingText;
+  /// This text is displayed when the button is in error state.
+  /// 
+  /// By default, it is set to "Error".
   final String errorText;
+  /// This text is displayed when the button is in done state.
+  /// 
+  /// By default, it is set to "Done".
   final String doneText;
   final Function(ProcessStatusNotifier processNotifier) onSave;
   final VoidCallback onDone;
-  const RSaveButton({
+  const RProcessButton({
     required super.key,
     this.height,
     this.width,
     this.borderRadius,
     this.style,
-    this.saveText = "Save",
+    this.generalText = "Save",
     this.loadingText = "Saving",
     this.errorText = "Error",
     this.doneText = "Done",
@@ -35,10 +47,10 @@ class RSaveButton extends StatefulWidget {
   });
 
   @override
-  State<RSaveButton> createState() => _RSaveButtonState();
+  State<RProcessButton> createState() => _RProcessButtonState();
 }
 
-class _RSaveButtonState extends State<RSaveButton> {
+class _RProcessButtonState extends State<RProcessButton> {
   Debugger debugger = UIDebugger();
   late ProcessStatusNotifier buttonStatusNotifier;
 
@@ -119,7 +131,7 @@ class _RSaveButtonState extends State<RSaveButton> {
         switch (buttonStatusNotifier.status.runtimeType) {
           case const (EnabledStatus):
             return Text(
-              widget.saveText,
+              widget.generalText,
               style: widget.style ?? TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -130,7 +142,7 @@ class _RSaveButtonState extends State<RSaveButton> {
           case const (DisabledStatus):
             debugger.dekhao("Button is disabled");
             return Text(
-              widget.saveText,
+              widget.generalText,
               style: widget.style ?? TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
