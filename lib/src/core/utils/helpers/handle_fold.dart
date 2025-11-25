@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import '../../base/api_handler/failure.dart';
-import '../../base/api_handler/success.dart';
-import '../../base/component/reactive_ui/process_notifier.dart';
-import '../../notifiers/snackbar_notifier.dart';
+import '../../api_handler/failure.dart';
+import '../../api_handler/success.dart';
+import '../../component/reactive/process_notifier.dart';
+import '../../component/reactive/snackbar_notifier.dart';
 import '../../services/debug/debug_service.dart';
 
 

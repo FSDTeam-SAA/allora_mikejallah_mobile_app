@@ -1,12 +1,12 @@
 
 import 'package:flutter/material.dart';
-import '../../../../common/widget/debouncer_button.dart';
-import '../../../../constants/app_colors.dart';
-import '../../../../constants/app_sizes.dart';
+import '../../../common/widget/debouncer_button.dart';
+import '../../../constants/app_colors.dart';
+import '../../../constants/app_sizes.dart';
 import '../process_notifier.dart';
-import '../../../../services/debug/debug_service.dart';
+import '../../../services/debug/debug_service.dart';
 
-class RProcessButton extends StatefulWidget {
+class RProcessNotifierButton extends StatefulWidget {
 
   final double? height;
   final double? width;
@@ -31,7 +31,7 @@ class RProcessButton extends StatefulWidget {
   final String doneText;
   final Function(ProcessStatusNotifier processNotifier) onSave;
   final VoidCallback onDone;
-  const RProcessButton({
+  const RProcessNotifierButton({
     required super.key,
     this.height,
     this.width,
@@ -47,10 +47,10 @@ class RProcessButton extends StatefulWidget {
   });
 
   @override
-  State<RProcessButton> createState() => _RProcessButtonState();
+  State<RProcessNotifierButton> createState() => _RProcessNotifierButtonState();
 }
 
-class _RProcessButtonState extends State<RProcessButton> {
+class _RProcessNotifierButtonState extends State<RProcessNotifierButton> {
   Debugger debugger = UIDebugger();
   late ProcessStatusNotifier buttonStatusNotifier;
 
